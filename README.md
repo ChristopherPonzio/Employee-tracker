@@ -7,7 +7,7 @@
 
 ## Installation
    To run this source code
-   * Video: 
+   * Video: https://watch.screencastify.com/v/NG9AGbQzf5vQ67u7pyQY
    * GitHub: https://christopherponzio.github.io/Employee-tracker
    * Repository: https://github.com/ChristopherPonzio/Employee-tracker
 
