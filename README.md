@@ -16,7 +16,7 @@
     * Once you open the file location in your terminal you will need to run mysql to upload the database. 
     * Once the database is uploaded you can use "npm start" to access the database and make changes as needed. 
 
-![Demo Screenshot](./assets/images/EmployeeTracker.png)
+![Demo Screenshot](./assets/images/employeeTracker.png)
 
 ## Credits
     * Michelle Blackwell github: https://github/Mblackwellgca 
