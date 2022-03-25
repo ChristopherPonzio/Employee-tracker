@@ -1,43 +1,43 @@
-// Requirements
-require('console.table');
-const { prompt } = require('inquirer');
+// Import and require
+const {prompt} = require('inquirer');
 const db = require('./db');
+require('console.table');
 
-// Initial Function
-function init() {
-  prompt( [
+// Initial function to run prompts
+function runPrompts() {
+  prompt([
     {
       type: "list",
       name: "choice",
       message: "What would you like to do?",
       choices: [
-        //VIEW
+        // View
         {
           name: "View All Departments",
           value: "VIEW_DEPARTMENTS"
         },
         {
           name: "View All Roles",
-          vlaue: "VIEW_ROLES"
+          value: "VIEW_ROLES"
         },
         {
           name: "View All Employees",
           value: "VIEW_EMPLOYEES"
         },
-        //ADD
+        // Add
         {
           name: "Add a Department",
           value: "ADD_DEPARTMENT"
         },
         {
           name: "Add a Role",
-          vlaue: "ADD_ROLE"
+          value: "ADD_ROLE"
         },
         {
-          name: "Add a Employee",
+          name: "Add an Employee",
           value: "ADD_EMPLOYEE"
         },
-        //Update
+        // Update
         {
           name: "Update an Employee",
           value: "UPDATE_EMPLOYEE"
@@ -50,30 +50,31 @@ function init() {
     }
   ]) .then(res => {
     let choice = res.choice;
-    switch(choice) {
-          case "VIEW_DEPARTMENTS":
+        // Call the functions from what the user selects
+        switch (choice) {
+            case "VIEW_DEPARTMENTS":
                 viewDepartments();
-          break;
-          case "VIEW_ROLES":
+                break;
+            case "VIEW_ROLES":
                 viewRoles();
-          break;
-          case "VIEW_EMPLOYEES":
+                break;
+            case "VIEW_EMPLOYEES":
                 viewEmployees();
-          break;
-          case "ADD_DEPARTMENT":
+                break;
+            case "ADD_DEPARTMENT":
                 addDepartment();
-          break;
-          case "ADD_ROLE":
+                break;
+            case "ADD_ROLE":
                 addRole();
-          break;
-          case "ADD_EMPLOYEE":
+                break;
+            case "ADD_EMPLOYEE":
                 addEmployee();
-          break;
-          case "UPDATE_EMPLOYEE":
+                break;
+            case "UPDATE_EMPLOYEE":
                 updateEmployee();
-          break;
-          default:
-            quit();
+                break;
+            default:
+                quit();
     }
   })
 }
@@ -144,7 +145,6 @@ function addRole() {
     })
   })
 }
-
 
 // Add a department
 function addDepartment() {
@@ -227,7 +227,7 @@ function addEmployee() {
   })
 }
 
-  // Update an employee's role
+// Update an employee's role
 function updateEmployee() {
   db.allEmployees()
       .then(([rows]) => {
@@ -259,12 +259,12 @@ function updateEmployee() {
           {
             type: "list",
             name: "roleId",
-            message: "What's the new role of this employee?",
+            message: "What is the new role of this employee?",
             choices: roleChoices
           }
         ])
-        .then(res => db.updateEmployeeRole(employeeId, res.roleId))
-        .then(() => console.log("Employee's role is updated"))
+        .then(res => db.updateEmployee(employeeId, res.roleId))
+        .then(() => console.log("Employee's role has been updated"))
         .then(() => runPrompts())
       });
   });
@@ -275,4 +275,4 @@ function quit() {
   process.exit();
 }     
 
-init();
+runPrompts();
